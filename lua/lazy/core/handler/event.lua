@@ -65,7 +65,7 @@ function M:trigger(event, pattern, groups)
   local events = M.trigger_events[event] or { event }
   ---@cast events string[]
   for _, e in ipairs(events) do
-    for _, autocmd in ipairs(vim.api.nvim_get_autocmds({ event = e, pattern = pattern })) do
+    for _, autocmd in ipairs(vim.api.nvim_get_autocmds({ event = e })) do
       if autocmd.event == e and autocmd.group and not groups[autocmd.group] then
         if Config.options.debug then
           Util.info({
